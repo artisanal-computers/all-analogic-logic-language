@@ -9,9 +9,10 @@
 8. [Inline functions `()`](#inline-functions)
 9. [Complex or composite functions `{} []`](#complex-or-composite-functions)
 10. [Outputs `|`](#outputs)
-11. [Comments `//`](#comments)
-12. [Functions with a variable number of arguments `#`](#functions-with-a-variable-number-of-arguments)
-13. [Good pratices and objectives](#good-pratices-and-objectives)
+11. [Comments `"`](#comments)
+12. [Extensions.`#`](#extensions)
+13. [Functions with a variable number of arguments `#`](#functions-with-a-variable-number-of-arguments)
+14. [Good pratices and objectives](#good-pratices-and-objectives)
 
 # Operations
 There is five operations, represented by the symbols `+ - * / ?`.
@@ -145,14 +146,23 @@ Example:
 
 # Extras
 ### Comments
-Like in many languages, can be written with `//`, but the end must have `;` like variables do.
+Must be written using double quotes.
 
-`a = 1 + 1; //Text to be ignored by the compiler/interpreter; b = 2 + 2;` a = 2, e b = 4.
+`a = 1 + 1; "Ignored text" b = 2 + "here we have a two" 2;` a = 2, e b = 4.
+
+### Extensions
+To add modifiers to the language, allowing different rules, the symbol `#` with the name of extension, finished with `;`, before any other item, except other extensions.
+
+```
+#TALL;
+
+a @1s= 1 + 1; "after 1 second a will be 2"
+```
 
 ### Functions with a variable number of arguments
 When composite functions are so generic that they could use different ammount of arguments, they can use inputs with variable size.
 
-To declare such inputs, the symbol `#` is used, followed with arguments (like comparation operation) with the number of subarguments or if the number is divisible by a number, followed with an inline function with how each subargument must be threat sequentially.
+To declare such inputs, name followed by the symbol `#` is used, followed with arguments (like comparation operation) with the number of subarguments or if the number is divisible by a number, followed with an inline function with how each subargument must be threat sequentially.
 
 When the number of arguments is repetitive, `.` can be used instead of written all of them.
 
@@ -163,26 +173,26 @@ Example with addition function:
 sum{
 	sum = A#/1(A+.);
 };
-a = sum[ A=[1,1] ]; //Output is 2;
-b = sum[ A=[1,1,1] ]; //Output is 3;
+a = sum[ A=[1,1] ];		"Output is 2"
+b = sum[ A=[1,1,1] ];	"Output is 3"
 ```
 Example of a function with optional but limited arguments:
 ```
 func{
 	func = A#0(1),1(A),2(A + A);
 }
-a = func[];				//Output is 1;
-b = func[A=[]];			//Output is 1;
-c = func[A=[5]];		//Output is 5;
-d = func[A=[7, 3]];		//Output is 10;
-e = func[A=[1, 2, 3]];	//Invalid expression;
+a = func[];				"Output is 1"
+b = func[A=[]];			"Output is 1"
+c = func[A=[5]];		"Output is 5"
+d = func[A=[7, 3]];		"Output is 10"
+e = func[A=[1, 2, 3]];	"Invalid expression"
 ```
 *In case of the expression seems dubious, do not use it !*
 
 ### Good pratices and objectives
 - Being a language to project/express the function of components inside an analogic computer, it must seem natural for almost any reader, and be centered in physical connections that the components may have - putting the order of where the data will go from top to bottom, definitions on another pages, at end or begin.
 - The name of inputs or outputs on the main escope must be the components of interaction from the computer, ex: `TERMOMETER` and `GaugePointer`, or even, parts must have each subpart named.
-- Being the components something that threat electrical signals, makes sense to use multiplication and division as they are proportion changers, but addition and subcration with constants (and not other kinda of variables) may not make sense, for that is recommended to have an input on global escope `:ONE` to be used as reference for certain calcules. Its important to think in propotions and not values.  
+- Being the components something that threat electrical signals, makes sense to use multiplication and division as they are proportion changers, but addition and subcration with constants (and not other kinda of variables) may not make sense, for that is recommended to have an input on global escope `:ONE` to be used as reference for certain calcules. Its important to think in propotions and not values.
 - In comparison function, the argument `!` must be think in being activated with the values dont have a significative difference to activate the other(s) argument(s). Because in real components is necessary a certain level to trigger, or special cases like [schmitt triggers](https://en.wikipedia.org/wiki/Schmitt_trigger) do.
 - Like memory can be used repeating the self name as argument, feedback can be represented using an argument of a function that will be declared/called later on the program.
 - To threat values that tends to infinity (up or down) must be though in the limits of the voltages of the circuit. For values that are result of division of 0, this limits may be the return. A good pratice would be use constants with values on volts or multiples, ex: `GND:0; VCC:5000;`.

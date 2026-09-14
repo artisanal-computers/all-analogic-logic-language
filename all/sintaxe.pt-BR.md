@@ -9,9 +9,10 @@
 8. [Funções inline `()`](#funções-inline)
 9. [Funções compostas ou complexas `{} []`](#funções-compostas-ou-complexas)
 10. [Saídas `|`](#saídas)
-11. [Comentários `//`](#comentários)
-12. [Funções com número variavel de argumentos `#`](#funções-com-número-variavel-de-argumentos)
-13. [Boas práticas e objetivo](#boas-práticas-e-objetivo)
+11. [Comentários `"`](#comentários)
+12. [Extensões.`#`](#extensões)
+13. [Funções com número variavel de argumentos `#`](#funções-com-número-variavel-de-argumentos)
+14. [Boas práticas e objetivo](#boas-práticas-e-objetivo)
 
 # Operações
 Há cinco operações, representas pelos símbolos `+ - * / ?`.
@@ -145,14 +146,23 @@ Exemplo:
 
 # Extras
 ### Comentários
-Como em muitas linguagems, pode ser escrito com `//`, porém o fim deverá ter `;` similar a variaveis.
+Devem ser escritos usando aspas duplas.
 
-`a = 1 + 1; //Texto a ser ignorado pelo compilador/interpretador; b = 2 + 2;` a = 2, e b = 4.
+`a = 1 + 1; "Texto ignorado" b = 2 + "ao lado temos um dois" 2;` a = 2, e b = 4.
+
+### Extensões
+Para adicionar modificadores da linguagem, permitindo regras diferentes, deve se usar o símbolo `#` com o nome da extensão e finalizado com `;`, antes de escrever qualquer outro item (a não ser outras extensões):
+
+```
+#TALL;
+
+a @1s= 1 + 1; "Após 1 segundo a será 2"
+```
 
 ### Funções com número variavel de argumentos
 Quando funções compostas são tão genéricas, que poderiam ser utilizadas com diferentes quantidades de argumentos, pode-se usar entradas de tamanho variavel.
 
-Para declarar tais entradas é necessario o símbolo `#` seguido do de argumentos (similar a operação de comparação) como número de subargumentos ou se o número é divisivel por tal número, seguido de uma função inline de como deve ser tratado cada subargumento sequencialmente.
+Para declarar tais entradas é necessario o nome seguido do símbolo `#` seguido dos argumentos (similar a operação de comparação) como número de subargumentos ou se o número é divisivel por tal número, seguido de uma função inline de como deve ser tratado cada subargumento sequencialmente.
 
 Quando o número de argumentos é repetitivo, pode-se usar `.` ao invez de escrever todos.
 
@@ -163,19 +173,19 @@ Um exemplo de função de soma:
 sum{
 	sum = A#/1(A+.);
 };
-a = sum[ A=[1,1] ]; //Saída de 2;
-b = sum[ A=[1,1,1] ]; //Saída de 3;
+a = sum[ A=[1,1] ]; "Saída de 2"
+b = sum[ A=[1,1,1] ]; "Saída de 3"
 ```
 Um exemplo com uma função com argumentos opcionais, mas com limite de argumentos:
 ```
 func{
 	func = A#0(1),1(A),2(A + A);
 }
-a = func[];				//Saída de 1;
-b = func[A=[]];			//Saída de 1;
-c = func[A=[5]];		//Saída de 5;
-d = func[A=[7, 3]];		//Saída de 10;
-e = func[A=[1, 2, 3]];	//Expressão inválida;
+a = func[];				"Saída de 1"
+b = func[A=[]];			"Saída de 1"
+c = func[A=[5]];		"Saída de 5"
+d = func[A=[7, 3]];		"Saída de 10"
+e = func[A=[1, 2, 3]];	"Expressão inválida"
 ```
 *No caso da expressão parecer dúbia, não a use !*
 
