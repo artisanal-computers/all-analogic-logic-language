@@ -11,7 +11,7 @@ Entretanto, nesse repositório encontrar-se-há apenas as regras da linguagem e 
 **Para ver detalhes veja [esse documento](all/sintaxe.pt-BR.md).**
 
 # Extensões:
-- TALL - ALL Temporizada **Trabalho em progresso**
+- [TALL](all/extensions/tall/sintaxe.pt-BR.md) - ALL Temporizada
 - STALL - STrings (texto) para ALL **Trabalho em progresso**
 
 # Simulador:

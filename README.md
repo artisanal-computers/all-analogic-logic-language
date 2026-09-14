@@ -12,7 +12,7 @@ Its a very intuitive language with 4 variables types (inputs/constants, simple f
 **For more details see [this document](all/syntax.md).**
 
 # Extensions:
-- TALL - Timed ALL **WIP**
+- [TALL](all/extensions/tall/syntax.md) - Timed ALL
 - STALL - STrings for ALL **WIP**
 
 # Simulator:
